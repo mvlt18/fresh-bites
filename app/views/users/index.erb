@@ -1,0 +1,4 @@
+<h3>Usernames:</h3>
+<% @users.each do |user| %>
+  <h4><a href="/users/<%=user.slug%>"><%= user.username%></a></h4>
+<% end %>
