@@ -1,0 +1,33 @@
+<h3>Create a new Recipe</h3>
+<form action="/recipes" method="post">
+
+  <label>Recipe Name:</label>
+  <input type="text" name="name">
+  <br><br>
+  
+  <label>Recipe Desciption:</label>
+  <input type="text" name="description">
+  <br><br>
+
+  <label>Recipe Ingredients:</label>
+  <input type="text" name="ingredients">
+  <br><br>
+
+  <label>Recipe Directions:</label>
+  <input type="text" name="directions">
+  <br><br>
+
+  <label>Recipe Cook Time (in minutes):</label>
+  <input type="text" name="cook_time">
+  <br><br>
+
+  <label>Choose a Category:</label>
+
+  <%@categories.each do |category|%>
+      <input type="checkbox" name="categories[]" value="<%=category.id%>" id="<%=category.name%>"><%=category.name%></input>
+  <%end%>
+  <br><br>
+
+  <input type="submit" name="submit" value="Create Recipe">
+
+</form>

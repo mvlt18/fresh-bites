@@ -1,0 +1,13 @@
+<h2>Recipe Name: <%=@recipe.name%></h2>
+<h3>Decscription: <%=@recipe.description%></h3>
+<h3>Ingredients: <%=@recipe.ingredients%></h3>
+<h3>Directions: <%=@recipe.directions%></h3>
+<h3>Cook Time: <%=@recipe.cook_time%></h3>
+
+<h2>Categories:</h2>
+  <%@recipe.categories.each do |category|%>
+  <h4><a href="/categories/<%= category.slug %>"><%= category.name%></a></h4>
+<% end %>
+<br>
+
+<a href="/recipes">Back to all recipes </a>
