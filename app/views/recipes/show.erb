@@ -10,4 +10,16 @@
 <% end %>
 <br>
 
+<a href=<%="/recipes/#{@recipe.slug}/edit"%>>Edit Recipe </a>
+
+<br>
+<br>
+
+<form action="/recipes/<%= @recipe.slug%>/delete" method="post">
+  <input type="submit" value="Delete Recipe">
+</form>
+
+<br>
+<br>
+
 <a href="/recipes">Back to all recipes </a>

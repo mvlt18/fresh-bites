@@ -74,9 +74,44 @@ class RecipesController < ApplicationController
     erb :'recipes/show'
   end
 
-  #To add:
-    #action to display edit form
-    #action to edit a single tweet
-    # #action to delete a tweet
+  #action to display edit form
+  get '/recipes/:slug/edit' do
+    if is_logged_in?(session)
+      @recipe = Recipe.find_by_slug(params[:slug])
+      @categories = Category.all
+      if @recipe.user == current_user(session)
+        erb :'recipes/edit'
+      else
+        redirect '/recipes'
+      end
+    else
+      redirect '/login'
+    end
+  end
+
+  #action to edit a single recipe
+   patch '/recipes/:slug' do
+    @recipe = Recipe.find_by_slug(params[:slug])
+      if is_logged_in?(session) && params[:name] == ""
+        redirect ("/recipes/#{@recipe.slug}/edit")
+      elsif is_logged_in?(session) && @recipe.user == current_user(session)
+        @recipe.update(name: params[:name], description: params[:description], ingredients: params[:ingredients], directions: params[:directions], cook_time: params[:cook_time])
+        @recipe.category_ids = params[:categories]
+        redirect ("/recipes/#{@recipe.slug}")
+      else
+        redirect '/login'
+      end
+    end
+
+    #action to delete a recipe
+    post '/recipes/:slug/delete' do
+       @recipe = Recipe.find_by_slug(params[:slug])
+       if is_logged_in?(session) && current_user(session) == @recipe.user
+         @recipe.destroy
+         redirect '/recipes'
+       else
+         redirect '/recipes'
+       end
+     end
 
 end
