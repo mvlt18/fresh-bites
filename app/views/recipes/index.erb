@@ -1,10 +1,4 @@
-<a href="/recipes/new">Create a new recipe!</a>
-<br>
-<br>
-
-
-
-<h3>All Recipes:</h3>
+<h3>All Recipes by the Fresh Bites Community:</h3>
 <% @recipes.each do |recipe| %>
 <h4><a href="/recipes/<%= recipe.slug %>"><%= recipe.name%></a></h4>
 <% end %>

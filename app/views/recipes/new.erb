@@ -1,10 +1,10 @@
-<h3>Create a new Recipe</h3>
+<h3>Create a new recipe:</h3>
 <form action="/recipes" method="post">
 
   <label>Recipe Name:</label>
   <input type="text" name="name">
   <br><br>
-  
+
   <label>Recipe Desciption:</label>
   <input type="text" name="description">
   <br><br>
@@ -24,7 +24,8 @@
   <label>Choose a Category:</label>
 
   <%@categories.each do |category|%>
-      <input type="checkbox" name="categories[]" value="<%=category.id%>" id="<%=category.name%>"><%=category.name%></input>
+  <br>
+      <input type="checkbox" name="categories[]" value="<%=category.id%>" id="<%=category.name%>"> <%= category.name%></input>
   <%end%>
   <br><br>
 

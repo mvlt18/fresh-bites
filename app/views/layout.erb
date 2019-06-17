@@ -1,32 +1,66 @@
+
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<html>
+<title>FreshBites</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>SinatraProject</title>
+<style>
+  body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+  .w3-row-padding img {margin-bottom: 12px}
+  .bgimg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/images/dalmatian.jpg');
+    min-height: 100%;
+  }
+</style>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="/stylesheets/main.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-
-        <%= yield %>
-
-      <footer class="branding">
-        <small>&copy; 2019 <strong>SinatraProject</strong></small>
-      </footer>
+<body>
+  <!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+  <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+    <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-black w3-xxxlarge w3-display-topright" style="padding:0 12px;">
+      <i class="fa fa-remove"></i>
+    </a>
+    <div class="w3-bar-block w3-center">
+      <a href="/" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Home</a>
+      <a href="/recipes" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Recipes</a>
+      <a href="/categories" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Categories</a>
+      <a href="/users" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Users</a>
+      <a href="/recipes/new" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">New Recipe</a>
+      <a href="/logout" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">Logout</a>
     </div>
+  </nav>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!--[if lt IE 7]>
-      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-    <![endif]-->
-  </body>
+  <script>
+    // Open and close sidebar
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "60%";
+      document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+  </script>
+
+  <!-- Sidebar with image -->
+  <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+    <div class="bgimg"></div>
+  </nav>
+
+  <!-- Menu icon to open sidebar -->
+    <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>
+
+  <!-- Page Content -->
+    <div class="w3-main w3-padding-large" style="margin-left:40%">
+
+   <%= yield %>
+
+</body>
+
 </html>

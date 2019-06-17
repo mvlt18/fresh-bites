@@ -1,11 +1,8 @@
-<h2>Category: <%=@category.name%></h2>
+<h3>Category ~ <%=@category.name%></h3>
 
-<h3>Recipes:</h3>
+<br>
+
+<h4>Recipes with this Tag:</h4>
   <%@category.recipes.each do |recipe|%>
-  <h4><a href="/recipes/<%= recipe.slug %>"><%= recipe.name%></a></h4>
-<% end %>
-
-<h3>Users:</h3>
-<% @category.users.each do |user| %>
-  <h4><a href="/users/<%= user.slug %>"><%= user.username%></a></h4>
+  <a href="/recipes/<%= recipe.slug %>"><%= recipe.name%></a> <br>
 <% end %>

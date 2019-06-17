@@ -1,17 +1,12 @@
-<h2>Recipe Name: <%=@recipe.name%></h2>
-<h3>Decscription: <%=@recipe.description%></h3>
-<h3>Ingredients: <%=@recipe.ingredients%></h3>
-<h3>Directions: <%=@recipe.directions%></h3>
-<h3>Cook Time: <%=@recipe.cook_time%></h3>
+<h3>Recipe Name: <%=@recipe.name%></h3>
+<p>Decscription: <%=@recipe.description%></p>
+<p>Ingredients: <%=@recipe.ingredients%></p>
+<p>Directions: <%=@recipe.directions%></p>
+<p>Cook Time: <%=@recipe.cook_time%></p>
 
-<h2>Categories:</h2>
-  <%@recipe.categories.each do |category|%>
-  <h4><a href="/categories/<%= category.slug %>"><%= category.name%></a></h4>
-<% end %>
 <br>
-
+<br>
 <a href=<%="/recipes/#{@recipe.slug}/edit"%>>Edit Recipe </a>
-
 <br>
 <br>
 
@@ -21,5 +16,7 @@
 
 <br>
 <br>
-
-<a href="/recipes">Back to all recipes </a>
+<h4>Category Tags:</h4>
+  <%@recipe.categories.each do |category|%>
+  <p><a href="/categories/<%= category.slug %>"><%= category.name%></a></p>
+<% end %>
