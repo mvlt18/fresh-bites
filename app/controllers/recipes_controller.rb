@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class RecipesController < ApplicationController
+  use Rack::Flash
 
   # action to display all recipes
   get '/recipes' do
@@ -32,6 +35,7 @@ class RecipesController < ApplicationController
         @recipe.category_ids = params[:categories]
 
         if @recipe.save
+          flash[:message] = "Successfully Created Recipe."
           redirect ("/recipes/#{@recipe.slug}")
         else
           redirect "/recipes/new"
@@ -56,18 +60,6 @@ class RecipesController < ApplicationController
   #   redirect ("/recipes/#{@recipe.slug}")
   # end
 
-  #does not work
-  # post '/recipes' do
-  #   binding.pry
-  #   @user = current_user(session)
-  #     if !params[:name].empty?
-  #       @user.recipes << Recipe.create(params)
-  #       redirect '/recipes'
-  #     else
-  #       redirect '/recipes/new'
-  #     end
-  #   end
-
   #action to show an individal recipe
   get '/recipes/:slug' do
     @recipe = Recipe.find_by_slug(params[:slug])
@@ -82,7 +74,8 @@ class RecipesController < ApplicationController
       if @recipe.user == current_user(session)
         erb :'recipes/edit'
       else
-        redirect '/recipes'
+        flash[:message] = "You can't edit another user's recipe."
+        redirect ("/recipes/#{@recipe.slug}")
       end
     else
       redirect '/login'
@@ -97,6 +90,7 @@ class RecipesController < ApplicationController
       elsif is_logged_in?(session) && @recipe.user == current_user(session)
         @recipe.update(name: params[:name], description: params[:description], ingredients: params[:ingredients], directions: params[:directions], cook_time: params[:cook_time])
         @recipe.category_ids = params[:categories]
+        flash[:message] = "Successfully Updated Recipe."
         redirect ("/recipes/#{@recipe.slug}")
       else
         redirect '/login'
@@ -108,10 +102,11 @@ class RecipesController < ApplicationController
        @recipe = Recipe.find_by_slug(params[:slug])
        if is_logged_in?(session) && current_user(session) == @recipe.user
          @recipe.destroy
+         flash[:message] = "Successfully Deleted Recipe."
          redirect '/recipes'
        else
-         redirect '/recipes'
+         flash[:message] = "You can't delete another user's recipe."
+         redirect ("/recipes/#{@recipe.slug}")
        end
      end
-
 end

@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+   <p style="color:red"><%= flash[:message] %></p>
+<% end %>
+
 <h3>All Recipes by the Fresh Bites Community:</h3>
 <% @recipes.each do |recipe| %>
 <h4><a href="/recipes/<%= recipe.slug %>"><%= recipe.name%></a></h4>

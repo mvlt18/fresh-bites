@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+   <p style="color:red"><%= flash[:message] %></p>
+<% end %>
+
 <h3>Recipe Name: <%=@recipe.name%></h3>
 <p>Decscription: <%=@recipe.description%></p>
 <p>Ingredients: <%=@recipe.ingredients%></p>
