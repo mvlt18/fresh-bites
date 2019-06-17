@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+  use Rack::Flash
 
   #action to display all users
   get '/users' do
@@ -26,11 +29,12 @@ class UsersController < ApplicationController
     # binding.pry
     @user = User.new(username: params[:username], email: params[:email], password: params[:password], city: params[:city], state: params[:state] )
       if params[:username] == "" || params[:email] == "" || params[:password] == "" || params[:city] == "" || params[:state] == ""
+        flash[:message] = "Please make sure to fill out all information to sign up!"
         redirect '/signup'
       else
         @user.save
         session[:user_id] = @user.id
-        redirect '/recipes'
+        redirect ("/users/#{@user.slug}")
     end
   end
 
@@ -45,10 +49,10 @@ class UsersController < ApplicationController
 
   #action to log into account
   post '/login' do
-  # binding.pry
   user = User.find_by(:username => params[:username])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
+    @user = current_user(session)
     redirect '/recipes'
   end
   redirect '/login'

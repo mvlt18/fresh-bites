@@ -1,4 +1,6 @@
-
+<% if flash.has?(:message) %>
+   <p style="color:red"><%= flash[:message] %></p>
+<% end %>
 
 <h3 class="header">Sign Up Below:</h3>
 
