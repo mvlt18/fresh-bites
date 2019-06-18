@@ -19,7 +19,7 @@ Fresh Bites is a demo web application created using Sinatra that allows users to
 
 ## Demo
 
-<Insert Demo>
+https://youtu.be/3xVj85PZCNY
 
 ## Contributing
 
@@ -30,3 +30,5 @@ You can make a request or report a bug by creating an issue or by submitting a p
 * Create a pull request, explaining the issue/reason for change/feature addition.
 
 ## License
+
+Fresh Bites is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
